@@ -1,13 +1,11 @@
-const mongoose = require("mongoose");
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/student_system");
-    console.log("MongoDB Connected");
-  } catch (err) {
-    console.error(err.message);
-    process.exit(1);
-  }
-};
+const mysql = require("mysql2");
 
-module.exports = connectDB;
+const db = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "student_db"
+});
+
+module.exports = db;

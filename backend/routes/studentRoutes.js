@@ -1,16 +1,11 @@
+
 const express = require("express");
-const Student = require("../models/Student");
 const router = express.Router();
+const controller = require("../controllers/studentController");
 
-router.post("/", async (req, res) => {
-  const student = new Student(req.body);
-  await student.save();
-  res.json(student);
-});
-
-router.get("/", async (req, res) => {
-  const students = await Student.find().populate("department");
-  res.json(students);
-});
+router.post("/", controller.createStudent);
+router.get("/", controller.getStudents);
+router.put("/:id", controller.updateStudent);
+router.delete("/:id", controller.deleteStudent);
 
 module.exports = router;

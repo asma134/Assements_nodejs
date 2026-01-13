@@ -1,7 +1,8 @@
+
 const Student = require("../models/studentModel");
 
 exports.createStudent = (req, res) => {
-  Student.create(req.body, (err) => {
+  Student.create(req.body, (err, result) => {
     if (err) return res.status(500).json(err);
     res.json({ message: "Student Registered" });
   });
@@ -15,14 +16,14 @@ exports.getStudents = (req, res) => {
 };
 
 exports.updateStudent = (req, res) => {
-  Student.update(req.params.id, req.body, (err) => {
+  Student.update(req.params.id, req.body, err => {
     if (err) return res.status(500).json(err);
     res.json({ message: "Student Updated" });
   });
 };
 
 exports.deleteStudent = (req, res) => {
-  Student.remove(req.params.id, (err) => {
+  Student.remove(req.params.id, err => {
     if (err) return res.status(500).json(err);
     res.json({ message: "Student Deleted" });
   });
